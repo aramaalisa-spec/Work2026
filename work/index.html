@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alisa Arama — Work</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Ovo&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg:        #FFFFFF;
+      --surface:   #EDECEA;
+      --border:    #DED9E0;
+      --text:      #1A1916;
+      --muted:     #7A7870;
+      --accent:    #785A8B;
+      --radius:    10px;
+      --font:      'Inter', sans-serif;
+      --font-joan: 'Ovo', serif;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      font-size: 15px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Layout ─────────────────────────────────── */
+    .page {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 48px 64px;
+    }
+
+    /* ── Nav ─────────────────────────────────────── */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 28px 0 24px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-name {
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--text);
+    }
+
+    .nav-links a.active {
+      font-weight: 500;
+    }
+
+    /* ── Header ─────────────────────────────────── */
+    .header {
+      padding: 44px 0 28px;
+    }
+
+    .header h1 {
+      font-family: var(--font-joan);
+      font-size: 24px;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      line-height: 1.05;
+      margin-bottom: 8px;
+    }
+
+    .header .subtitle {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .header .intro {
+      font-family: var(--font-joan);
+      font-size: 15px;
+      line-height: 1.75;
+      color: var(--text);
+      max-width: 680px;
+      font-weight: 400;
+    }
+
+    .header-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 28px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+
+    .header-bottom span {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* ── Download button ─────────────────────────── */
+    .btn-download {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--accent);
+      color: #fff;
+      font-family: var(--font);
+      font-size: 13px;
+      font-weight: 500;
+      padding: 10px 18px;
+      border-radius: 6px;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: opacity 0.15s;
+      flex-shrink: 0;
+    }
+
+    .btn-download:hover {
+      opacity: 0.8;
+    }
+
+    .btn-download svg {
+      width: 13px;
+      height: 13px;
+    }
+
+    /* ── PDF viewer ──────────────────────────────── */
+    .pdf-outer {
+      display: flex;
+      justify-content: center;
+    }
+
+    .pdf-wrap {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--surface);
+      width: 100%;
+      max-width: 1400px;
+    }
+
+    .pdf-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 9px 14px;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg);
+    }
+
+    .pdf-filename {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 400;
+    }
+
+    .pdf-toolbar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .pdf-page-count {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .pdf-zoom {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .pdf-zoom button {
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      color: var(--muted);
+      font-size: 14px;
+      width: 24px;
+      height: 24px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: color 0.15s, border-color 0.15s;
+      font-family: var(--font);
+      line-height: 1;
+    }
+
+    .pdf-zoom button:hover {
+      color: var(--text);
+      border-color: var(--text);
+    }
+
+    .pdf-zoom-level {
+      font-size: 12px;
+      color: var(--muted);
+      min-width: 36px;
+      text-align: center;
+    }
+
+    .pdf-viewer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 24px;
+      background: #E8E6E6;
+      height: 82vh;
+      overflow-y: auto;
+    }
+
+    .pdf-canvas-wrap {
+      display: inline-block;
+      margin-bottom: 16px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.12);
+      line-height: 0;
+    }
+
+    .pdf-canvas-wrap:last-child {
+      margin-bottom: 0;
+    }
+
+    .pdf-canvas-wrap canvas {
+      display: block;
+    }
+
+    /* ── Footer ──────────────────────────────────── */
+    footer {
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    footer span {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    footer .footer-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    footer .footer-links a {
+      font-size: 12px;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    footer .footer-links a:hover {
+      color: var(--text);
+    }
+
+    /* ── Fade-in ─────────────────────────────────── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(8px);
+      animation: fadeUp 0.5s ease forwards;
+    }
+
+    .fade-in:nth-child(1) { animation-delay: 0.05s; }
+    .fade-in:nth-child(2) { animation-delay: 0.12s; }
+    .fade-in:nth-child(3) { animation-delay: 0.2s; }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: none; }
+    }
+
+    @media (max-width: 560px) {
+      .page { padding: 0 16px 48px; }
+      .header h1 { font-size: 26px; }
+      .header-bottom { flex-direction: column; align-items: flex-start; }
+      .nav-links { gap: 18px; }
+      .pdf-outer { width: 100%; }
+      .pdf-wrap { width: 90%; }
+      .pdf-viewer { padding: 12px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <nav class="fade-in">
+      <ul class="nav-links">
+        <li><a href="https://resume.domain.com">resume</a></li>
+        <li><a href="https://work.domain.com" class="active">work</a></li>
+      </ul>
+    </nav>
+
+    <div class="header fade-in">
+      <h1>Alisa Arama</h1>
+      <p class="subtitle">Product Designer, Berlin</p>
+      <p class="intro">Hello, my portfolio lives here. It contains some of my recent projects. You are welcome to download it as a file for your records.</p>
+      <p class="intro" style="margin-top: 10px;">Email me directly at <a href="mailto:arama.alisa@proton.me" style="color: var(--text); text-decoration: underline; text-underline-offset: 3px;">arama.alisa@proton.me</a></p>
+      <div class="header-bottom">
+        <a class="btn-download" href="Alisa_Arama_Portfolio.pdf" download="Alisa_Arama_Portfolio.pdf">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 2v8M5 7l3 3 3-3M2 13h12"/>
+          </svg>
+          download pdf
+        </a>
+      </div>
+    </div>
+
+    <div class="pdf-outer fade-in">
+      <div class="pdf-wrap">
+        <div class="pdf-topbar">
+          <span class="pdf-filename">Alisa_Arama_Portfolio.pdf</span>
+          <div class="pdf-toolbar">
+            <span class="pdf-page-count" id="page-count">— / —</span>
+            <div class="pdf-zoom">
+              <button id="zoom-out" title="Zoom out">−</button>
+              <span class="pdf-zoom-level" id="zoom-level">100%</span>
+              <button id="zoom-in" title="Zoom in">+</button>
+            </div>
+          </div>
+        </div>
+        <div class="pdf-viewer" id="pdf-viewer"></div>
+      </div>
+    </div>
+
+    <footer>
+      <span>© 2026 Berlin</span>
+      <div class="footer-links">
+        <a href="https://www.linkedin.com/in/alisa-arama-27892b86/" target="_blank">linkedin</a>
+        <a href="mailto:arama.alisa@proton.me">arama.alisa@proton.me</a>
+      </div>
+    </footer>
+
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script>
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+    let pdfDoc = null;
+    let zoomLevel = 1.25;
+    const dpr = window.devicePixelRatio || 1;
+    const container = document.getElementById('pdf-viewer');
+    const pageCountEl = document.getElementById('page-count');
+    const zoomLevelEl = document.getElementById('zoom-level');
+    zoomLevelEl.textContent = '125%';
+
+    const BASE = 3;
+    let observer = null;
+
+    function isMobile() { return window.innerWidth <= 560; }
+
+    async function renderPDF() {
+      pdfDoc = await pdfjsLib.getDocument('Alisa_Arama_Portfolio.pdf').promise;
+      pageCountEl.textContent = `1 / ${pdfDoc.numPages}`;
+      await renderAllPages();
+    }
+
+    async function renderAllPages() {
+      if (observer) observer.disconnect();
+      container.innerHTML = '';
+
+      for (let pageNum = 1; pageNum <= pdfDoc.numPages; pageNum++) {
+        const page = await pdfDoc.getPage(pageNum);
+
+        // on mobile: fit page to container width
+        let scale;
+        if (isMobile()) {
+          const fitViewport = page.getViewport({ scale: 1 });
+          const containerWidth = container.clientWidth - 24; // subtract padding
+          scale = (containerWidth / fitViewport.width) * dpr;
+        } else {
+          scale = BASE * zoomLevel;
+        }
+
+        const viewport = page.getViewport({ scale });
+
+        const wrap = document.createElement('div');
+        wrap.className = 'pdf-canvas-wrap';
+        wrap.dataset.page = pageNum;
+
+        const canvas = document.createElement('canvas');
+        canvas.width = viewport.width;
+        canvas.height = viewport.height;
+        canvas.style.width = (viewport.width / (isMobile() ? dpr : BASE)) + 'px';
+        canvas.style.height = (viewport.height / (isMobile() ? dpr : BASE)) + 'px';
+
+        wrap.appendChild(canvas);
+        container.appendChild(wrap);
+
+        await page.render({
+          canvasContext: canvas.getContext('2d'),
+          viewport
+        }).promise;
+      }
+
+      observer = new IntersectionObserver((entries) => {
+        let best = null, maxRatio = 0;
+        entries.forEach(e => {
+          if (e.intersectionRatio > maxRatio) {
+            maxRatio = e.intersectionRatio;
+            best = e.target;
+          }
+        });
+        if (best) pageCountEl.textContent = `${best.dataset.page} / ${pdfDoc.numPages}`;
+      }, { root: container, threshold: Array.from({length: 11}, (_, i) => i * 0.1) });
+
+      container.querySelectorAll('.pdf-canvas-wrap').forEach(el => observer.observe(el));
+    }
+
+    document.getElementById('zoom-in').addEventListener('click', () => {
+      if (zoomLevel >= 2.0) return;
+      zoomLevel = Math.round((zoomLevel + 0.25) * 100) / 100;
+      zoomLevelEl.textContent = Math.round(zoomLevel * 100) + '%';
+      renderAllPages();
+    });
+
+    document.getElementById('zoom-out').addEventListener('click', () => {
+      if (zoomLevel <= 0.5) return;
+      zoomLevel = Math.round((zoomLevel - 0.25) * 100) / 100;
+      zoomLevelEl.textContent = Math.round(zoomLevel * 100) + '%';
+      renderAllPages();
+    });
+
+    renderPDF();
+  </script>
+</body>
+</html><
